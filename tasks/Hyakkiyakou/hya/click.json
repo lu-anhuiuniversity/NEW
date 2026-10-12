@@ -1,5 +1,11 @@
 [
   {
+    "itemName": "hselect_temp",
+    "roiFront": "0,0,0,0",
+    "roiBack": "0,0,0,0",
+    "description": "临时变量"
+  },
+  {
     "itemName": "hselect_1",
     "roiFront": "200,318,115,273",
     "roiBack": "200,318,115,273",
@@ -19,14 +25,14 @@
   },
   {
     "itemName": "friend_1",
-    "roiFront": "466,227,161,67",
-    "roiBack": "466,227,161,67",
+    "roiFront": "479,275,140,12",
+    "roiBack": "479,275,140,12",
     "description": "description"
   },
   {
     "itemName": "friend_2",
-    "roiFront": "738,229,158,64",
-    "roiBack": "738,229,158,64",
+    "roiFront": "738,275,140,12",
+    "roiBack": "738,275,140,12",
     "description": "description"
   },
   {

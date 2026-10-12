@@ -11,10 +11,10 @@
   {
     "itemName": "haccess",
     "imageName": "hya_haccess.png",
-    "roiFront": "1059,554,100,100",
-    "roiBack": "1059,554,100,100",
+    "roiFront": "999,529,202,152",
+    "roiBack": "999,529,202,152",
     "method": "Template matching",
-    "threshold": 0.8,
+    "threshold": 0.7,
     "description": "进入"
   },
   {
@@ -79,5 +79,50 @@
     "method": "Template matching",
     "threshold": 0.8,
     "description": "回归任务"
+  },
+  {
+    "itemName": "has_prob_up",
+    "imageName": "has_prob_up.png",
+    "roiFront": "172,9,96,32",
+    "roiBack": "157,1,843,59",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "概率up"
+  },
+  {
+    "itemName": "limit_time_0",
+    "imageName": "limit_time_0.png",
+    "roiFront": "611,15,40,40",
+    "roiBack": "611,15,40,40",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "倒计时0"
+  },
+  {
+    "itemName": "bean_0",
+    "imageName": "bean_0.png",
+    "roiFront": "129,642,28,36",
+    "roiBack": "129,642,28,36",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "豆子已空"
+  },
+  {
+    "itemName": "time_over",
+    "imageName": "time_over.png",
+    "roiFront": "650,328,46,59",
+    "roiBack": "650,328,46,59",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "时间终了"
+  },
+  {
+    "itemName": "buff_1",
+    "imageName": "gb_buff_1.png",
+    "roiFront": "363,32,32,46",
+    "roiBack": "344,14,128,76",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院左上角的加成"
   }
 ]
