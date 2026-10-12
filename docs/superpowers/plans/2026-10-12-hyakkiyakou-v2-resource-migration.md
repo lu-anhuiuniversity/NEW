@@ -12,7 +12,7 @@
 
 ## 背景
 
-- V1 = `G:\HELP\OnmyojiAutoScript`（OAS 源码仓库，本计划的**唯一写入目标**）。
+- V1 = `G:\HELP\NEW`（OAS 源码仓库，本计划的**唯一写入目标**）。
 - V2 = `G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit`（第三方绿色发行版，**只读来源**）。
 - 两者同源：都基于 OnmyojiAutoScript 的百鬼夜行任务。V2 的百鬼逻辑被编译为 `*.pyd` 并叠加了卡密系统与免卡密注入补丁，本次**全部排除**，只取其中可独立复用的资源。
 
@@ -39,7 +39,7 @@
 ## Global Constraints
 
 - V2 目录全程**只读**，不得就地修改、重命名或删除任何文件。
-- 唯一写入目标：`G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou` 及其子目录。
+- 唯一写入目标：`G:\HELP\NEW\tasks\Hyakkiyakou` 及其子目录。
 - 不迁移任何 `*.pyd`，不引入任何网络校验、卡密、`check_status` / `validate_secure_key` / `acquire_lock` 相关代码。
 - 所有 `RuleImage` 声明必须使用 V1 的参数形式：`file="./tasks/Hyakkiyakou/hya/<name>.png"`；**不得**照抄 V2 的 `path="./tasks/Hyakkiyakou/"` + `file="hya/..."` 写法（V1 的 `module/atom/image.py:RuleImage.__init__` 没有 `path` 形参）。
 - 换行符差异不算差异：`hya/ocr.json`、`hya/swipe.json`、`train/click.json`、`train/swipe.json`、`hya/image2.json`、`hya/image3.json`、`hya/image4.json`、`train/image.json` 与 V1 内容完全一致（仅 CRLF→LF），**保持 V1 原样，不做改动**。
@@ -93,7 +93,7 @@ V1 与 V2 的 `oashya` 包（0.0.7）**完全一致**（`oashya_fp32.onnx` 均�
 
 **Files:**
 - Modify: 无（仅提交与记录）
-- Test: `G:\HELP\OnmyojiAutoScript\docs\superpowers\plans\2026-10-12-hyakkiyakou-v2-resource-migration.md`（本文件）
+- Test: `G:\HELP\NEW\docs\superpowers\plans\2026-10-12-hyakkiyakou-v2-resource-migration.md`（本文件）
 
 **Interfaces:**
 - Consumes: 无
@@ -103,7 +103,7 @@ V1 与 V2 的 `oashya` 包（0.0.7）**完全一致**（`oashya_fp32.onnx` 均�
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript status --short
+git -C G:\HELP\NEW status --short
 ```
 Expected: 若 `tasks/Hyakkiyakou` 下有未提交改动，先自行确认归属，不要覆盖；否则无输出。
 
@@ -111,8 +111,8 @@ Expected: 若 `tasks/Hyakkiyakou` 下有未提交改动，先自行确认归属�
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript commit --allow-empty -m "chore(Hyakkiyakou): 资源回迁基线"
-git -C G:\HELP\OnmyojiAutoScript tag hya-baseline-20261012
+git -C G:\HELP\NEW commit --allow-empty -m "chore(Hyakkiyakou): 资源回迁基线"
+git -C G:\HELP\NEW tag hya-baseline-20261012
 ```
 Expected: 标签创建成功，`git tag -l hya-*` 能列出。
 
@@ -120,8 +120,8 @@ Expected: 标签创建成功，`git tag -l hya-*` 能列出。
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript add docs/superpowers/plans/2026-10-12-hyakkiyakou-v2-resource-migration.md
-git -C G:\HELP\OnmyojiAutoScript commit -m "docs(Hyakkiyakou): 新增 V2 资源回迁计划"
+git -C G:\HELP\NEW add docs/superpowers/plans/2026-10-12-hyakkiyakou-v2-resource-migration.md
+git -C G:\HELP\NEW commit -m "docs(Hyakkiyakou): 新增 V2 资源回迁计划"
 ```
 Expected: 提交成功。
 
@@ -146,7 +146,7 @@ Expected: 提交成功。
 Run:
 ```powershell
 $src='G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\hya'
-$dst='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$dst='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($n in 'has_prob_up.png','limit_time_0.png','bean_0.png','time_over.png','gb_buff_1.png','damo.png'){ Copy-Item -LiteralPath "$src\$n" -Destination "$dst\$n" -Force }
 ```
 Expected: 6 个文件出现在 V1 的 `hya/` 下。
@@ -156,7 +156,7 @@ Expected: 6 个文件出现在 V1 的 `hya/` 下。
 Run:
 ```powershell
 $src='G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\hya'
-$dst='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$dst='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($n in 'has_prob_up.png','limit_time_0.png','bean_0.png','time_over.png','gb_buff_1.png','damo.png'){
   $a=(Get-FileHash -LiteralPath "$src\$n" -Algorithm SHA256).Hash
   $b=(Get-FileHash -LiteralPath "$dst\$n" -Algorithm SHA256).Hash
@@ -169,8 +169,8 @@ Expected: 六行全部为 `True`。
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript add tasks/Hyakkiyakou/hya/has_prob_up.png tasks/Hyakkiyakou/hya/limit_time_0.png tasks/Hyakkiyakou/hya/bean_0.png tasks/Hyakkiyakou/hya/time_over.png tasks/Hyakkiyakou/hya/gb_buff_1.png tasks/Hyakkiyakou/hya/damo.png
-git -C G:\HELP\OnmyojiAutoScript commit -m "feat(Hyakkiyakou): 迁入 V2 新增识别图模板"
+git -C G:\HELP\NEW add tasks/Hyakkiyakou/hya/has_prob_up.png tasks/Hyakkiyakou/hya/limit_time_0.png tasks/Hyakkiyakou/hya/bean_0.png tasks/Hyakkiyakou/hya/time_over.png tasks/Hyakkiyakou/hya/gb_buff_1.png tasks/Hyakkiyakou/hya/damo.png
+git -C G:\HELP\NEW commit -m "feat(Hyakkiyakou): 迁入 V2 新增识别图模板"
 ```
 Expected: 6 个文件入提交。
 
@@ -191,7 +191,7 @@ Expected: 6 个文件入提交。
 
 Run:
 ```powershell
-$dst='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$dst='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($n in 'hya_haccess.png','hya_hend.png','hya_ensure_recall.png'){ "{0}  BEFORE {1}  {2}B" -f $n,(Get-FileHash -LiteralPath "$dst\$n" -Algorithm SHA256).Hash,(Get-Item -LiteralPath "$dst\$n").Length }
 ```
 Expected: 打印三个旧哈希与旧大小（应为 19250 / 36215 / 8624 字节）。
@@ -201,7 +201,7 @@ Expected: 打印三个旧哈希与旧大小（应为 19250 / 36215 / 8624 字节
 Run:
 ```powershell
 $src='G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\hya'
-$dst='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$dst='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($n in 'hya_haccess.png','hya_hend.png','hya_ensure_recall.png'){ Copy-Item -LiteralPath "$src\$n" -Destination "$dst\$n" -Force }
 ```
 Expected: 文件被替换，大小变为 5761 / 7426 / 2461 字节。
@@ -211,7 +211,7 @@ Expected: 文件被替换，大小变为 5761 / 7426 / 2461 字节。
 Run:
 ```powershell
 $src='G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\hya'
-$dst='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$dst='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($n in 'hya_haccess.png','hya_hend.png','hya_ensure_recall.png'){ "{0}  {1}" -f $n,((Get-FileHash -LiteralPath "$src\$n" -Algorithm SHA256).Hash -eq (Get-FileHash -LiteralPath "$dst\$n" -Algorithm SHA256).Hash) }
 ```
 Expected: 三行全部 `True`。
@@ -268,7 +268,7 @@ Expected: 三行全部 `True`。
 
 Run:
 ```powershell
-& G:\HELP\OnmyojiAutoScript\toolkit\python.exe -c "import sys; sys.path.insert(0, r'G:\HELP\OnmyojiAutoScript'); from tasks.Hyakkiyakou.assets import HyakkiyakouAssets as A; print(A.I_HAS_PROB_UP.roi_front, A.I_HACCESS.threshold, A.C_HSELECT_TEMP.name)"
+& G:\HELP\NEW\toolkit\python.exe -c "import sys; sys.path.insert(0, r'G:\HELP\NEW'); from tasks.Hyakkiyakou.assets import HyakkiyakouAssets as A; print(A.I_HAS_PROB_UP.roi_front, A.I_HACCESS.threshold, A.C_HSELECT_TEMP.name)"
 ```
 Expected: 输出 `(172, 9, 96, 32) 0.7 hselect_temp`，无导入异常。
 
@@ -276,8 +276,8 @@ Expected: 输出 `(172, 9, 96, 32) 0.7 hselect_temp`，无导入异常。
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript add tasks/Hyakkiyakou/assets.py tasks/Hyakkiyakou/hya/hya_haccess.png tasks/Hyakkiyakou/hya/hya_hend.png tasks/Hyakkiyakou/hya/hya_ensure_recall.png
-git -C G:\HELP\OnmyojiAutoScript commit -m "feat(Hyakkiyakou): 同步 V2 识别图声明并更新过时模板"
+git -C G:\HELP\NEW add tasks/Hyakkiyakou/assets.py tasks/Hyakkiyakou/hya/hya_haccess.png tasks/Hyakkiyakou/hya/hya_hend.png tasks/Hyakkiyakou/hya/hya_ensure_recall.png
+git -C G:\HELP\NEW commit -m "feat(Hyakkiyakou): 同步 V2 识别图声明并更新过时模板"
 ```
 Expected: 图片与 `assets.py` 同批入提交（模板与 ROI 必须同提交，避免中间态回归）。
 
@@ -310,7 +310,7 @@ Expected: 图片与 `assets.py` 同批入提交（模板与 ROI 必须同提交�
 
 Run:
 ```powershell
-$d='G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\hya'
+$d='G:\HELP\NEW\tasks\Hyakkiyakou\hya'
 foreach($f in 'image1.json','image5.json','click.json'){ $j=Get-Content -LiteralPath "$d\$f" -Raw -Encoding UTF8 | ConvertFrom-Json; "OK $f  items=$($j.Count)" }
 ```
 Expected: 三行 `OK`，无 JSON 解析异常。
@@ -319,8 +319,8 @@ Expected: 三行 `OK`，无 JSON 解析异常。
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript add tasks/Hyakkiyakou/hya/image1.json tasks/Hyakkiyakou/hya/image5.json tasks/Hyakkiyakou/hya/click.json
-git -C G:\HELP\OnmyojiAutoScript commit -m "feat(Hyakkiyakou): 合并 V2 规则 JSON（新增检查点与修正 ROI）"
+git -C G:\HELP\NEW add tasks/Hyakkiyakou/hya/image1.json tasks/Hyakkiyakou/hya/image5.json tasks/Hyakkiyakou/hya/click.json
+git -C G:\HELP\NEW commit -m "feat(Hyakkiyakou): 合并 V2 规则 JSON（新增检查点与修正 ROI）"
 ```
 Expected: 三个 JSON 入提交。
 
@@ -331,7 +331,7 @@ Expected: 三个 JSON 入提交。
 **Files:**
 - Read: `G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\tracker.onnx`
 - Read: `G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\detect_rarity.onnx`
-- Read: `G:\HELP\OnmyojiAutoScript\toolkit\Lib\site-packages\oashya\oashya_fp32.onnx`
+- Read: `G:\HELP\NEW\toolkit\Lib\site-packages\oashya\oashya_fp32.onnx`
 - Create（仅当闸门通过）: `tasks/Hyakkiyakou/agent/tracker.onnx`
 
 **Interfaces:**
@@ -348,11 +348,11 @@ Expected: 三个 JSON 入提交。
 
 Run:
 ```powershell
-$py='G:\HELP\OnmyojiAutoScript\toolkit\python.exe'
+$py='G:\HELP\NEW\toolkit\python.exe'
 $code = @'
 import onnxruntime as ort
 paths = {
- "v1_oashya": r"G:\HELP\OnmyojiAutoScript\toolkit\Lib\site-packages\oashya\oashya_fp32.onnx",
+ "v1_oashya": r"G:\HELP\NEW\toolkit\Lib\site-packages\oashya\oashya_fp32.onnx",
  "v2_tracker": r"G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\tracker.onnx",
  "v2_rarity": r"G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\detect_rarity.onnx",
 }
@@ -372,9 +372,9 @@ Expected: 打印三行签名，用于比对。
 
 Run（条件执行）:
 ```powershell
-Copy-Item -LiteralPath 'G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\tracker.onnx' -Destination 'G:\HELP\OnmyojiAutoScript\tasks\Hyakkiyakou\agent\tracker.onnx' -Force
-git -C G:\HELP\OnmyojiAutoScript add tasks/Hyakkiyakou/agent/tracker.onnx
-git -C G:\HELP\OnmyojiAutoScript commit -m "feat(Hyakkiyakou): 迁入签名兼容的 V2 跟踪模型"
+Copy-Item -LiteralPath 'G:\百鬼全自动2(1)\百鬼全自动\toolkit-不能用模拟器\toolkit\tasks\Hyakkiyakou\agent\tracker.onnx' -Destination 'G:\HELP\NEW\tasks\Hyakkiyakou\agent\tracker.onnx' -Force
+git -C G:\HELP\NEW add tasks/Hyakkiyakou/agent/tracker.onnx
+git -C G:\HELP\NEW commit -m "feat(Hyakkiyakou): 迁入签名兼容的 V2 跟踪模型"
 ```
 Expected: 闸门未通过时不执行本步，改在本计划书记录「不迁入」。
 
@@ -394,10 +394,10 @@ Expected: 闸门未通过时不执行本步，改在本计划书记录「不迁�
 
 Run:
 ```powershell
-$py='G:\HELP\OnmyojiAutoScript\toolkit\python.exe'
+$py='G:\HELP\NEW\toolkit\python.exe'
 $code = @'
 import sys, os
-sys.path.insert(0, r"G:\HELP\OnmyojiAutoScript")
+sys.path.insert(0, r"G:\HELP\NEW")
 from tasks.Hyakkiyakou.assets import HyakkiyakouAssets as A
 names = ["I_HAS_PROB_UP","I_LIMIT_TIME_0","I_BEAN_0","I_TIME_OVER","I_BUFF_1","I_CHECK_DAMO"]
 for n in names:
@@ -413,7 +413,7 @@ Expected: 六行 `True`。
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript status --short | Select-String -Pattern 'Identity|bypass|injector|sitecustomize|\.pyd|settings\.json|start_main'
+git -C G:\HELP\NEW status --short | Select-String -Pattern 'Identity|bypass|injector|sitecustomize|\.pyd|settings\.json|start_main'
 ```
 Expected: 无输出（确认排除项一个都没进来）。
 
@@ -426,8 +426,8 @@ Expected: 能正常识别进入按钮（`I_HACCESS` 新 ROI 生效）、正常�
 
 Run:
 ```powershell
-git -C G:\HELP\OnmyojiAutoScript add -A tasks/Hyakkiyakou docs/superpowers/plans/2026-10-12-hyakkiyakou-v2-resource-migration.md
-git -C G:\HELP\OnmyojiAutoScript commit -m "test(Hyakkiyakou): V2 资源回迁验证通过"
+git -C G:\HELP\NEW add -A tasks/Hyakkiyakou docs/superpowers/plans/2026-10-12-hyakkiyakou-v2-resource-migration.md
+git -C G:\HELP\NEW commit -m "test(Hyakkiyakou): V2 资源回迁验证通过"
 ```
 Expected: 收尾提交完成。
 
