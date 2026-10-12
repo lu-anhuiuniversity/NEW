@@ -264,6 +264,15 @@ Expected: 三行全部 `True`。
 	C_HSELECT_TEMP = RuleClick(roi_front=(0,0,0,0), roi_back=(0,0,0,0), name="hselect_temp")
 ```
 
+- [ ] **Step 3b: 补齐差异清单 B 中遗漏的 4 条朋友 ROI 声明**
+
+在 `assets.py` 中同步以下 4 条声明，均保持 V1 的 `file=` 形式：
+
+- `C_FRIEND_1`：`roi_front`/`roi_back` 从 `(466,227,161,67)` 改为 `(479,275,140,12)`。
+- `C_FRIEND_2`：`roi_front`/`roi_back` 从 `(738,229,158,64)` 改为 `(738,275,140,12)`。
+- `I_FRIEND_SAME_1_RECALL`：`roi_back` 从 `(114,102,132,94)` 改为 `(154,105,132,94)`（`roi_front` 保持 `(167,123,106,62)`）。
+- `I_FRIEND_SAME_2_RECALL`：`roi_back` 从 `(107,114,133,80)` 改为 `(152,112,133,80)`（`roi_front` 保持 `(168,126,100,60)`）。
+
 - [ ] **Step 4: 导入校验**
 
 Run:
