@@ -467,3 +467,10 @@ Expected: 收尾提交完成。
 - 排除项审计：分支 `main..HEAD` 的变更文件中未出现任何 `Identity` / `bypass` / `injector` / `sitecustomize` / `*.pyd` / `settings.json` / `start_main` / `ghosts` 路径。
 - 未误改：`ocr.json`、`swipe.json`、`image2/3/4.json`、`train/*.json` 未被修改（它们与 V2 仅为换行符差异）。
 - 待人工完成：**实机跑一轮百鬼**。本执行环境无法驱动模拟器/游戏，Task 7 Step 3 的真机冒烟测试需在 `G:\HELP\NEW` 上手动执行，重点确认新的 `I_HACCESS` ROI/阈值不会造成进入页误判。
+
+### 合并记录（2026-10-12）
+
+- 特性分支 `hya-v2-resource-migration` 已以 fast-forward 方式合并回 `main`，合并后 `main` = `b0b1768`。
+- 合并后重跑 12 项 `assets.py` ↔ JSON 一致性校验，结果 12/12 OK。
+- 回退点：`git reset --hard 4c78a5a`（合并前的 `main`）。
+- 状态：**计划已完成**（唯一未完成项为需人工执行的实机冒烟测试）。
