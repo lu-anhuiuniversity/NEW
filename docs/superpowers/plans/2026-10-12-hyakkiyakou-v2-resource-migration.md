@@ -449,4 +449,21 @@ Expected: 收尾提交完成。
 
 ## 执行记录
 
-（执行过程中在本节追加 Task 6 的模型判定结论与 Task 7 的验证结果。）
+### Task 6 模型闸门结论（2026-10-12）
+
+- 判定：**不迁入** V2 的 `agent/tracker.onnx` 与 `agent/detect_rarity.onnx`。
+- 依据：
+  - V1 的 `toolkit/Lib/site-packages/oashya/oashya_fp32.onnx` 不是明文 ONNX，而是 Fernet 加密封装（文件头 `gAAAAA…`），由 oashya 的 `tracker.cp310-win_amd64.pyd` 在加载时解密，无法读取其输入/输出签名与 V2 模型比对，因此闸门规则 1 无法成立。
+  - V2 的两个模型是真实 ONNX（producer = pytorch）：
+    - `tracker.onnx`：in `images [1,3,736,1280]` → out `output0 [1,197,19320]`
+    - `detect_rarity.onnx`：in `images [1,3,736,1280]` → out `output0 [1,186,19320]`
+  - 两者输入为 736×1280（与游戏帧 720×1280 不同，需要专门预处理），且由被排除的编译模块 `agent/tracker.pyd` 驱动；V1 现有的 `oashya` 推理入口无法加载它们，落盘即死文件。
+- 结论：按闸门规则 2 不落地，避免引入永不生效的文件。
+
+### Task 7 验证结果（2026-10-12）
+
+- 资源存在性：6 张新增模板 + 3 张替换模板全部存在，字节数与 V2 源一致。
+- 声明一致性：`assets.py` 与 `image1.json` / `image5.json` / `click.json` 共 12 项 ROI/阈值全部一致（脚本校验 12/12 OK）。
+- 排除项审计：分支 `main..HEAD` 的变更文件中未出现任何 `Identity` / `bypass` / `injector` / `sitecustomize` / `*.pyd` / `settings.json` / `start_main` / `ghosts` 路径。
+- 未误改：`ocr.json`、`swipe.json`、`image2/3/4.json`、`train/*.json` 未被修改（它们与 V2 仅为换行符差异）。
+- 待人工完成：**实机跑一轮百鬼**。本执行环境无法驱动模拟器/游戏，Task 7 Step 3 的真机冒烟测试需在 `G:\HELP\NEW` 上手动执行，重点确认新的 `I_HACCESS` ROI/阈值不会造成进入页误判。
