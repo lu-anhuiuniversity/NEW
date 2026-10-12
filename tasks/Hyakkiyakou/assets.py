@@ -11,6 +11,8 @@ class HyakkiyakouAssets:
 
 
 	# Click Rule Assets
+	# 临时变量
+	C_HSELECT_TEMP = RuleClick(roi_front=(0,0,0,0), roi_back=(0,0,0,0), name="hselect_temp")
 	# description 
 	C_HSELECT_1 = RuleClick(roi_front=(200,318,115,273), roi_back=(200,318,115,273), name="hselect_1")
 	# description 
@@ -47,7 +49,7 @@ class HyakkiyakouAssets:
 	# 邀请按钮 
 	I_HINVITE = RuleImage(roi_front=(139,593,63,39), roi_back=(105,535,129,147), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_hinvite.png")
 	# 进入 
-	I_HACCESS = RuleImage(roi_front=(1059,554,100,100), roi_back=(1059,554,100,100), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_haccess.png")
+	I_HACCESS = RuleImage(roi_front=(999,529,202,152), roi_back=(999,529,202,152), threshold=0.7, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_haccess.png")
 	# 开始 
 	I_HSTART = RuleImage(roi_front=(1119,555,100,100), roi_back=(1119,555,100,100), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_hstart.png")
 	# 押注 
@@ -62,6 +64,18 @@ class HyakkiyakouAssets:
 	I_HCLOSE_RED = RuleImage(roi_front=(1056,177,54,54), roi_back=(1056,177,54,54), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_hclose_red.png")
 	# 回归任务 
 	I_ENSURE_RECALL = RuleImage(roi_front=(1060,145,66,62), roi_back=(877,72,307,211), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_ensure_recall.png")
+	# 概率up
+	I_HAS_PROB_UP = RuleImage(roi_front=(172,9,96,32), roi_back=(157,1,843,59), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/has_prob_up.png")
+	# 倒计时0
+	I_LIMIT_TIME_0 = RuleImage(roi_front=(611,15,40,40), roi_back=(611,15,40,40), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/limit_time_0.png")
+	# 豆子已空
+	I_BEAN_0 = RuleImage(roi_front=(129,642,28,36), roi_back=(129,642,28,36), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/bean_0.png")
+	# 时间终了
+	I_TIME_OVER = RuleImage(roi_front=(650,328,46,59), roi_back=(650,328,46,59), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/time_over.png")
+	# 庭院左上角的加成
+	I_BUFF_1 = RuleImage(roi_front=(363,32,32,46), roi_back=(344,14,128,76), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/gb_buff_1.png")
+	# 达摩武场
+	I_CHECK_DAMO = RuleImage(roi_front=(102,23,125,36), roi_back=(102,23,125,36), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/damo.png")
 
 
 	# Image Rule Assets
